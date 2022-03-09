@@ -1,0 +1,94 @@
+
+
+.login-form{
+    margin-top: 50px;
+    h1{
+        color: white;
+        text-align: center;
+        font-size: 35px;
+        padding-bottom: 20px;
+    }
+
+
+
+    .ui.form{
+        .field{
+            .input{
+                margin-top: 5px;
+                input{
+                    background-color:#222431;
+                    border: 2px solid rgb(62, 68, 90);
+                    font-size: 16px;
+                    color: white;
+    
+                    &:hover,
+                    &:active,
+                    &:focus{
+                        background-color: #1a1d26;
+                        border: 2px solid transparent;
+                        color: white;
+                    }
+                }
+            
+            i{
+                color: white;
+                font-size: 15px;
+            }
+
+            &.error{
+                input{
+                    border-bottom: 1px solid rgb(233, 94, 94);
+                }
+            }
+            }
+        }
+        .button{
+            width: 100%;
+            color: white;
+            background-color: #00bbff;
+            text-transform: uppercase;
+            margin-top: 10px;
+            border-radius: 5px;
+            letter-spacing: 3px;
+            font-size: 14px;
+            padding: 17px 0;
+        }
+
+        .error-text{
+            color: white;
+            padding-left: 12px;
+        }
+    }
+
+
+    &__options{
+        margin-top: 50px;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: bold;
+
+
+        p{
+            &:first-of-type{
+                margin-bottom: 40px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            &:last-of-type{
+                color: rgb(194, 194, 194);
+
+                span{
+                    color: white;
+                    text-decoration: underline;
+                    padding-left: 5px;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}

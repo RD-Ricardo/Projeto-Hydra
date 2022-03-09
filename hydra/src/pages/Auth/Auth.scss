@@ -1,0 +1,54 @@
+@import "../../scss/index.scss";
+
+.auth{
+    min-height: 100vh;
+    background-color:#353746;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    &__box{
+        position: relative;
+        background-color: #222431;
+        width: 400px;
+        z-index: 1;
+        padding: 40px 50px 30px 50px;
+        border-radius: 10px;
+        border: 1px solid rgb(49, 52, 59);
+
+        &-logo{
+            text-align: center;
+
+            img{
+                width: 100px;
+            }
+        }
+    }
+
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: 37px;
+}
+
+.container__content {
+    color: white;
+    font-size: 20px;
+    background-color:#222431;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+}
+
+.container__separator {
+    border-bottom: 2px solid white;
+    height: 7px;
+    width: 100%;
+}

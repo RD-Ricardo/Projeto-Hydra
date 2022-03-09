@@ -1,0 +1,57 @@
+@import  "../../scss/index.scss";
+
+
+
+.ui.menu.vertical.menu-left{
+    display: flex;
+    justify-content: space-between  !important;
+    border-radius: 10px;
+    background-color: rgba(33, 40, 59, 1);
+    height: 94%;
+    width: 80%;
+    padding-top: 20px;
+    margin: 20px 0px 0px 20px;
+    
+    h2{
+        font-size: 15px;
+        color: white;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgb(155, 155, 155);
+        padding: 0px 50px 15px 50px;
+        margin-top: 7px;
+    }
+
+    .item,
+    a.item{
+        color: white;
+        font-size: 18px;
+        font-weight:400;
+        text-transform: uppercase;
+        border-radius: 10px;
+        margin: 10px 2px;
+
+    }
+    .top{
+        height: 90%;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        img{
+            width: 50px;
+        }
+    }
+    .footer{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: end;
+        height: 10%;
+        padding-bottom: 20px;
+
+        
+    }
+}
