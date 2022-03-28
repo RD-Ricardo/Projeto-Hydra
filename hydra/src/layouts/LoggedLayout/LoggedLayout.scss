@@ -7,14 +7,15 @@
     margin: 0;
 
     >.row{
-        padding: 0;
+        padding: 7px;
 
         &:first-of-type{
             height: 100vh;
         }
 
         >.column{
-            padding:0;
+            padding:10px;
         }
     }
 }
+

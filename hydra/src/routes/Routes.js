@@ -1,20 +1,19 @@
 import React from "react";
 import {Switch, Route} from "react-router-dom";
 import Home from "../pages/Home";
-
+import Assistente from "../pages/Assistente";
+import Funcao from "../pages/Funcao";
 export default  function  Routes() {
   return (
     <Switch>
         <Route path="/" exact>
             <Home/>
         </Route>
-        <Route path="/assitentes" exact>
-            <h2>Assistentes</h2>
+        <Route path="/Assistente" exact>
+            <Assistente/>
         </Route>
-        <Route path="/settigns" exact>
-            <h2>
-                Configurações
-            </h2>
+        <Route path="/Funcao" exact>
+          <Funcao/>
         </Route>
     </Switch>
   )
