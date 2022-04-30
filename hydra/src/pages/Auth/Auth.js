@@ -30,7 +30,7 @@ export default function Auth(){
                 <div className="container">
                     <div className="container__content">
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                        hydra
+                        hidra
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     </div> 
                     <div className="container__separator"></div>

@@ -1,11 +1,12 @@
 import "./RegisterForm.scss";
 import { Button, Icon, Form, Input } from 'semantic-ui-react';
-import "firebase/auth";
 import { useState } from "react";
 import { validateEmail } from "../../../utils/Validation";
 import { getAuth, createUserWithEmailAndPassword , updateProfile} from "firebase/auth";
 import { toast } from "react-toastify";
-
+import { collection, addDoc } from "firebase/firestore";
+import  { db }  from "../../../utils/Firebase"
+ 
 export default function RegisterForm(props) {
   
   const { setSelectedForm } = props;
@@ -53,10 +54,11 @@ export default function RegisterForm(props) {
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, formData.email, formData.password)
       .then(()=>{
+        testeDoc();
         chagerUserName();        
       })
       .catch((e)=>{
-        toast.error("Deu erro maladro")
+        toast.error("Deu erro Login")
       })
     }
   };
@@ -68,6 +70,74 @@ export default function RegisterForm(props) {
     }).catch(()=>{
       toast.error("Deu erro no login")
     })
+  }
+
+  const testeDoc = async () =>{
+
+    const auth = getAuth();
+
+    const assitenteDoc = await addDoc(collection(db, "assitente"),{ 
+        idUser: auth.currentUser.uid, 
+        name: "Hydra", 
+        createDate: Date.now()
+     }
+    ) 
+    
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Abrir Googgle",
+      palavraChave : "ir para google",
+      ativo: true
+    },)
+
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Abrir youtube",
+      palavraChave : "ir para google",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Abrir Netflix",
+      palavraChave : "ir para netflix",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Abrir Instagram",
+      palavraChave : "ir para instragram",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Abrir WhatsApp",
+      palavraChave : "ir para whatsapp",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Pesquisar no Google",
+      palavraChave : "pesquisa por",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Pesquisar no YouTube",
+      palavraChave : "ver video",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Anuncio do YouTube",
+      palavraChave : "pular anuncio",
+      ativo: true
+    },)
+    await addDoc(collection(db, `assitente/${assitenteDoc.id}/funcao`),
+    {
+      nome: "Pular Abertura Netflix",
+      palavraChave : "pular abertura",
+      ativo: true
+    },)
   }
 
   return (

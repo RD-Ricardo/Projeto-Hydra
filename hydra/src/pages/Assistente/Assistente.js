@@ -1,18 +1,15 @@
 import React from 'react'
-
+import { Grid } from 'semantic-ui-react';
+import "./Assitente.scss"
 const Assistente = () => {
   return (
-    <div style={
-    {backgroundColor:"red", 
-    height:"87vh", 
-    borderRadius:"10px",
-    width:"100%",
-    marginTop:"10px",
-    marginLeft:"-10px"}}> 
-
-
-
-    </div>
+    <Grid className='assistente'>
+     <Grid.Row className='assistente-row'>
+       <Grid.Column className='assistente-column' width={16}>
+         Assitente
+       </Grid.Column>
+     </Grid.Row>
+   </Grid>
   )
 }
 

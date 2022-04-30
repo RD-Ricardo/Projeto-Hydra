@@ -1,8 +1,9 @@
 import React , { useState, useEffect }from 'react'
 import  { db }  from "../../utils/Firebase"
-import { collection, getDocs, query} from 'firebase/firestore';
-import {Button, Icon, Table ,Checkbox} from "semantic-ui-react";
+import { collection, getDocs, query, where} from 'firebase/firestore';
+import {Button, Icon, Table ,Checkbox, Grid} from "semantic-ui-react";
 import "./Funcao.scss"
+import { getAuth } from 'firebase/auth';
 
 const Funcao =  () => {
 
@@ -12,59 +13,76 @@ const Funcao =  () => {
  },[])
   
  async function getAllFunction(){
-  let funcaoArray = [];
 
-  const funcoes = query(collection(db, 'funcao'));
-  
-  const queryFuncoes = await getDocs(funcoes);
+  let results = [];
 
-  queryFuncoes.forEach((doc)=>{
-    funcaoArray.push({
-      id:doc.id,
-      nomeArray: doc.data().nome,
-      palavraChaveArray : doc.data().palavraChave,
-      urlArray: doc.data().url
-    })
-    
+  let idAssitente = "";
+
+  const userAuth =  getAuth();
+  const assitente = query(collection(db,"assitente"),where("idUser", "==", `${userAuth.currentUser.uid}`));
+  const queryAssitente = await getDocs(assitente);
+  queryAssitente.forEach(doc =>{
+     idAssitente = doc.id;
   })
-  setFuncao(funcaoArray);
+ 
+  const funcoes = query(collection(db, `assitente/${idAssitente}/funcao`))
+  const queryFuncoes = await getDocs(funcoes);
+  queryFuncoes.forEach((doc)=>{
+    results.push({
+      id:doc.id,
+      nomeResult:doc.data().nome,
+      ativoResult: doc.data().ativo,
+      palavraResult: doc.data().palavraChave
+    })
+  }) 
+
+
+  setFuncao(results)
  }
 
 
   return (
-   <div className='testeFuncao' style={{ height:450, overflowY: 'scroll'}}>
-       <Table inverted selectable>
-        <Table.Header style={{textTransform:"uppercase"}}>
-          <Table.Row>
-            <Table.HeaderCell>Funcao</Table.HeaderCell>
-            <Table.HeaderCell>Palavra Chave</Table.HeaderCell>
-            <Table.HeaderCell>Data de Criação</Table.HeaderCell>
-            <Table.HeaderCell>Editar</Table.HeaderCell>
-            <Table.HeaderCell>Ativa/Desativa</Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {
-            funcao.map(c =>{
-            return(
-            <Table.Row key={c.id}>
-              <Table.Cell>{c.nomeArray}</Table.Cell>
-              <Table.Cell>{c.palavraChaveArray}</Table.Cell>
-              <Table.Cell>{c.urlArray}</Table.Cell>
-              <Table.Cell >
-                <Button inverted color='blue'>
-                    <Icon name='edit' />
-                </Button>  
-              </Table.Cell>
-              <Table.Cell><Checkbox toggle/></Table.Cell>
-            </Table.Row> 
-            )
-          }) 
-        }
-        </Table.Body>
-      </Table>
-   </div>
-    
+  
+  <Grid className='funcao'>
+    <Grid.Row className='funcao-row'>
+      <Grid.Column className='funcao-column' width={16}  style={{ height: 630, overflowY: 'scroll' }}>
+          <Table inverted selectable >
+         <Table.Header style={{textTransform:"uppercase"}}>
+           <Table.Row>
+             <Table.HeaderCell>Funcao</Table.HeaderCell>
+             <Table.HeaderCell>Palavra Chave</Table.HeaderCell>
+             <Table.HeaderCell>Editar</Table.HeaderCell>
+             <Table.HeaderCell>Ativa/Desativa</Table.HeaderCell>
+           </Table.Row>
+         </Table.Header>
+         <Table.Body  >
+           {
+             funcao.map(c =>{
+             return(
+             <Table.Row key={c.id}>
+               <Table.Cell >{c.nomeResult}</Table.Cell>
+               <Table.Cell style={{textTransform:"uppercase"}}>" {c.palavraResult} "</Table.Cell>
+               <Table.Cell >
+                    <Button inverted color='blue'>
+                      <Icon name='edit' />
+                   </Button>  
+               </Table.Cell>
+               <Table.Cell>
+               { c.ativoResult === true ?
+                   <Checkbox checked toggle/>
+                   :
+                   <Checkbox toggle/>
+               } 
+               </Table.Cell>
+             </Table.Row> 
+             )
+           }) 
+         }
+         </Table.Body>
+       </Table> 
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
   )
 }
 

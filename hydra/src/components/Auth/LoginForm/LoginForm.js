@@ -4,7 +4,7 @@ import { Button, Icon, Form, Input } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import {validateEmail} from "../../../utils/Validation";
 import { db } from "../../../utils/Firebase";
-import { FactorId, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginForm(props) {
 

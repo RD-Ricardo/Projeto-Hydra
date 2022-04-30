@@ -1,5 +1,5 @@
 import {useState} from "react";
-import { db } from "./utils/Firebase";
+// import { db } from "./utils/Firebase";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import Auth  from "./pages/Auth/";
 import { ToastContainer } from "react-toastify";
